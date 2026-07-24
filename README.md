@@ -331,8 +331,6 @@ JSON, YAML, XML, TOML, CSV, TSV, XLSX, ENV, INI, Markdown, and dozens of source 
 | **Reader** | ![Reader](docs/screenshots/reader.png) |
 | **Code Beautifier** | ![Code Beautifier](docs/screenshots/code-beautifier.png) |
 
-> TODO: Add screenshots to `docs/screenshots/`. Each should show the workspace in action with realistic data.
-
 ---
 
 ## 📁 Repository Structure
