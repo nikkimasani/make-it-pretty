@@ -1,0 +1,101 @@
+# ─── Python ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+*.egg-link
+*.so
+.python-version
+.Python
+instance/
+.webassets-cache
+
+# ─── Testing & Coverage ──────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+coverage/
+coverage.xml
+htmlcov/
+.pytest_cache/
+*.cover
+
+# ─── Linting & Type Checking ─────────────────────────
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# ─── Virtual Environments ────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.env/
+
+# ─── Node ────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm/
+pnpm-lock.yaml
+.yarn/
+
+# ─── Build Artifacts ─────────────────────────────────
+dist/
+build/
+.next/
+.cache/
+.parcel-cache/
+.vite/
+tsconfig.tsbuildinfo
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+*.tsbuildinfo
+
+# ─── Editors & IDEs ──────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.swn
+*.bak
+*.orig
+
+# ─── Operating System ────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ─── Logs ────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Temporary ───────────────────────────────────────
+tmp/
+temp/
+.tmp/
+
+# ─── Local Databases ─────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+
+# ─── Secrets & Configuration ─────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── Application-Specific ────────────────────────────
+# Uploaded files (local storage, not committed)
+backend/uploads/*
+!backend/uploads/.gitkeep
