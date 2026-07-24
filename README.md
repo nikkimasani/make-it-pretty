@@ -22,22 +22,22 @@
 
 ## 📖 Table of Contents
 
-- [Why This Project Exists](#-why-this-project-exists)
-- [Key Features](#-key-features)
-- [Five Workspaces](#-five-workspaces)
-- [Supported Formats](#-supported-formats)
-- [Technology Stack](#-technology-stack)
-- [Project Architecture](#-project-architecture)
-- [Screenshots](#-screenshots)
-- [Repository Structure](#-repository-structure)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [Performance](#-performance)
-- [Contributing](#-contributing)
-- [FAQ](#-faq)
-- [Roadmap](#-roadmap)
-- [License](#-license)
+- [Why This Project Exists](#why-this-project-exists)
+- [Key Features](#key-features)
+- [Five Workspaces](#five-workspaces)
+- [Supported Formats](#supported-formats)
+- [Technology Stack](#technology-stack)
+- [Project Architecture](#project-architecture)
+- [Screenshots](#screenshots)
+- [Repository Structure](#repository-structure)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Performance](#performance)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+- [Roadmap](#roadmap)
+- [License](#license)
 
 ---
 
@@ -72,11 +72,11 @@ Five specialized workspaces, each designed for a single human intent. No overwhe
 
 Every transformation is rule-based and repeatable. The same input always produces the same output. Zero hallucination risk, predictable behavior, and full control over results.
 
-### 🌐 44 Programming Languages
+### 44 Programming Languages
 
 From Python to Solidity, Go to Elixir — the Code Beautifier detects and formats source code using the ecosystem's best formatters (Prettier, Ruff, sqlparse) with intelligent fallback for languages without installed formatters.
 
-### 📂 Rich Format Support
+### Rich Format Support
 
 JSON, YAML, XML, TOML, CSV, TSV, XLSX, ENV, INI, Markdown, and dozens of source file extensions — all detected automatically by file extension or content analysis.
 
