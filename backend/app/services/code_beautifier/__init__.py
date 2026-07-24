@@ -45,7 +45,7 @@ def beautify_code(content: str, filename: str = "") -> BeautifierResult:
                 warnings.append(f"{fmt.name}: {fmt_result.error}")
             result = fmt_result
 
-    if not any_formatter_tried:
+    if not any_formatter_tried or (result and not result.success):
         from .formatters.fallback import FallbackFormatter
 
         fb = FallbackFormatter()
