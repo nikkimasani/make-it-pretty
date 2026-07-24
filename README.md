@@ -414,7 +414,7 @@ make-it-pretty/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-org/make-it-pretty.git
+git clone https://github.com/TheCodeGalaxy/Make-it-pretty
 cd make-it-pretty
 
 # 2. Set up the backend
@@ -448,7 +448,7 @@ Open **http://localhost:5173** in your browser.
 
 ```powershell
 # 1. Clone the repository
-git clone https://github.com/your-org/make-it-pretty.git
+git clone https://github.com/TheCodeGalaxy/Make-it-pretty
 cd make-it-pretty
 
 # 2. Set up the backend
