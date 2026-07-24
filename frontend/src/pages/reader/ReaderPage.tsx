@@ -236,13 +236,13 @@ export function ReaderPage() {
               <Badge variant="default">{data.word_count?.toLocaleString()} words</Badge>
               <Badge variant="primary">{data.reading_time_minutes} min read</Badge>
               {data.format && <Badge variant="default">{data.format}</Badge>}
-              {data.metadata?.url && (
-                <Badge variant="default" title={data.metadata.url as string}>
+              {Boolean(data.metadata?.url) && (
+                <Badge variant="default">
                   {extractDomain(data.metadata.url as string)}
                 </Badge>
               )}
-              {data.metadata?.pages && (
-                <Badge variant="default">{data.metadata.pages} pages</Badge>
+              {Boolean(data.metadata?.pages) && (
+                <Badge variant="default">{String(data.metadata.pages)} pages</Badge>
               )}
             </div>
             <div className="flex gap-2">

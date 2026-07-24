@@ -372,10 +372,16 @@ make-it-pretty/
 │   ├── tests/                   # pytest test files
 │   ├── uploads/                 # Uploaded files (gitignored, .gitkeep preserved)
 │   ├── requirements.txt         # Runtime dependencies
-│   └── pyproject.toml           # Project config, tool settings
+│   ├── pyproject.toml           # Project config, tool settings
+│   └── Dockerfile               # Production container image
 │
-├── docs/                        # Architecture and development documentation
-├── .env.example                 # Configuration template
+├── frontend/                     # React + Vite + TypeScript
+│   ├── nginx.conf                # nginx config for production serving
+│   └── Dockerfile                # Multi-stage build (Node → nginx)
+│
+├── docker-compose.yml            # One-command startup: docker compose up
+├── .dockerignore                 # Docker build exclusions
+├── docs/                         # Architecture and development documentation
 ├── .gitignore                   # Production-ready ignore rules
 ├── CONTRIBUTING.md              # Contribution guide
 ├── LICENSE                      # MIT License
@@ -395,12 +401,73 @@ make-it-pretty/
 | `backend/app/services/code_beautifier/` | Modular formatter pipeline with registry, recovery engine, validators, and per-language formatters |
 | `backend/app/api/routes/` | Thin route adapters — validate input, call service, return response |
 | `backend/tests/` | pytest test suite covering all services, endpoints, and edge cases |
+| `backend/Dockerfile` | Python 3.12 image with all formatters and dependencies |
+| `frontend/Dockerfile` | Multi-stage build: Node 22 compiles, nginx serves |
+| `docker-compose.yml` | Orchestrates both services with networking, volumes, health checks |
 
 ---
 
 ## 💻 Installation
 
-### Prerequisites
+### 🐳 Docker (Recommended)
+
+**Prerequisites:** [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) (included with Docker Desktop).
+
+```bash
+# Clone the repository
+git clone https://github.com/your-org/make-it-pretty.git
+cd make-it-pretty
+
+# Build and start — this single command does everything
+docker compose up --build
+```
+
+Open **http://localhost:5173** in your browser.
+
+**What happens:**
+- Docker builds the backend image (Python 3.12 + all dependencies + Prettier + 10+ formatter binaries)
+- Docker builds the frontend image (Node 22 builds static files, nginx serves them)
+- Backend starts on port `8000`, frontend on port `5173`
+- API requests from the frontend are proxied to the backend automatically
+
+**Stop the application:**
+```bash
+docker compose down
+```
+
+**Rebuild after updates:**
+```bash
+git pull
+docker compose up --build
+```
+
+**Remove everything (containers + volumes + images):**
+```bash
+docker compose down -v
+docker rmi make-it-pretty-backend make-it-pretty-frontend
+```
+
+**Persistent storage:** Uploaded files are stored in a Docker named volume (`uploads`). It persists across restarts and is only removed with `docker compose down -v`.
+
+**Ports:**
+| Service | Host Port | Container Port | Purpose |
+|---------|-----------|---------------|---------|
+| Frontend | `5173` | `80` | Web UI |
+| Backend | `8000` | `8000` | REST API + health check |
+
+**Troubleshooting:**
+- **Port conflict:** Change the host port in `docker-compose.yml` (e.g., `"8080:80"` for frontend)
+- **Permission denied:** Ensure Docker Desktop is running (Windows/macOS) or the Docker socket is accessible (Linux)
+- **Slow first build:** The initial build downloads base images and dependencies; subsequent builds use cached layers
+- **No formatter output:** The Docker image includes all supported formatters (Prettier, Ruff, clang-format, shfmt, gofmt, stylua, etc.). If a formatter you need is missing, open an issue.
+
+---
+
+### Manual Installation (Alternative)
+
+Use this method if you prefer to run without Docker or need to modify the application code with hot reloading.
+
+#### Prerequisites
 
 | Requirement | Version |
 |-------------|---------|
@@ -427,15 +494,12 @@ cd frontend
 npm install
 cd ..
 
-# 4. (Optional) Configure environment
-cp .env.example backend/.env
-
-# 5. Start the backend (terminal 1)
+# 4. Start the backend (terminal 1)
 cd backend
 source .venv/bin/activate
 uvicorn app.main:app --reload --port 8000
 
-# 6. Start the frontend (terminal 2)
+# 5. Start the frontend (terminal 2)
 cd frontend
 npm run dev
 ```
@@ -461,15 +525,12 @@ cd frontend
 npm install
 cd ..
 
-# 4. (Optional) Configure environment
-copy .env.example backend\.env
-
-# 5. Start the backend (terminal 1)
+# 4. Start the backend (terminal 1)
 cd backend
 .venv\Scripts\Activate.ps1
 uvicorn app.main:app --reload --port 8000
 
-# 6. Start the frontend (terminal 2)
+# 5. Start the frontend (terminal 2)
 cd frontend
 npm run dev
 ```
@@ -507,7 +568,7 @@ make clean            # Remove build artifacts and caches
 
 ## ⚙️ Configuration
 
-Configuration is handled via environment variables or a `.env` file placed in `backend/.env`.
+No configuration is required. The application works out of the box with sensible defaults.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
@@ -518,13 +579,11 @@ Configuration is handled via environment variables or a `.env` file placed in `b
 | `MAX_UPLOAD_SIZE` | `52428800` | Maximum file upload size in bytes (50 MB) |
 | `UPLOAD_DIR` | `uploads` | Directory for temporary uploaded files |
 
-Copy `.env.example` to `backend/.env` and adjust as needed:
+To override defaults, set environment variables when starting the backend:
 
 ```bash
-cp .env.example backend/.env
+MAX_UPLOAD_SIZE=104857600 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
-
-> **Security note:** The `.env` file contains local configuration only. It is gitignored. Never commit secrets or API keys — the project has no cloud dependencies, but the pattern is established for forward compatibility.
 
 ---
 

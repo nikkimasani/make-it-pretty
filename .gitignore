@@ -18,7 +18,6 @@ instance/
 coverage/
 coverage.xml
 htmlcov/
-.pytest_cache/
 *.cover
 
 # ─── Linting & Type Checking ─────────────────────────
@@ -41,7 +40,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm/
-pnpm-lock.yaml
 .yarn/
 
 # ─── Build Artifacts ─────────────────────────────────
@@ -55,6 +53,10 @@ tsconfig.tsbuildinfo
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
 *.tsbuildinfo
+
+# ─── Package Manager Locks ───────────────────────────
+pnpm-lock.yaml
+uv.lock
 
 # ─── Editors & IDEs ──────────────────────────────────
 .vscode/
@@ -96,6 +98,5 @@ temp/
 .env.*.local
 
 # ─── Application-Specific ────────────────────────────
-# Uploaded files (local storage, not committed)
 backend/uploads/*
 !backend/uploads/.gitkeep

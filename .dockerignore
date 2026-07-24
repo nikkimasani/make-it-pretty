@@ -1,0 +1,92 @@
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+*.egg-link
+*.so
+.python-version
+.Python
+instance/
+.webassets-cache
+.venv/
+backend/.venv/
+backend/backend/.venv/
+venv/
+env/
+ENV/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+coverage/
+coverage.xml
+htmlcov/
+*.cover
+
+# Linting & Type Checking
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+
+# Node
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+.pnpm/
+pnpm-lock.yaml
+
+# Build
+dist/
+build/
+.next/
+.cache/
+.parcel-cache/
+.vite/
+tsconfig.tsbuildinfo
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+*.tsbuildinfo
+
+# Editors & IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary
+tmp/
+temp/
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Documentation artifacts
+docs/
+
+# Root-level metadata (not needed in container)
+README.md
+CONTRIBUTING.md
+Makefile
+package.json
+package-lock.json
+AGENTS.md
+
+# Backend uploads (will be a named volume)
+backend/uploads/*

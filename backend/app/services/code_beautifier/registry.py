@@ -58,7 +58,6 @@ class FormatterRegistry:
         self._register_subprocess("Objective-C", "clang-format", ["-style=file", "-i"])
         self._register_subprocess("Shell", "shfmt", use_stdin=True)
         self._register_subprocess("CMake", "cmake-format", ["-i"])
-        self._register_subprocess("Lua", "luafmt", ["--stdin"], use_stdin=True)
         self._register_subprocess("Go", "gofmt", ["-w"])
         self._register_subprocess("Rust", "rustfmt")
         self._register_subprocess("Kotlin", "ktfmt")
