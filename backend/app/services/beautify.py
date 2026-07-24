@@ -518,16 +518,18 @@ def _check_grammar(text: str) -> list[dict[str, int | str]]:
 
 
 def _enrich_emoji(text: str) -> str:
-    result = list(text)
     matched = set()
+    replacements: list[tuple[int, str]] = []
     for m in re.finditer(r"\b(\w+)\b", text):
         word = m.group(1)
         key = _stem(word.lower())
         if key in EMOJI_MAP and key not in matched:
             matched.add(key)
-            emoji = EMOJI_MAP[key]
-            insert_pos = m.end()
-            result.insert(insert_pos, " " + emoji)
+            replacements.append((m.end(), " " + EMOJI_MAP[key]))
+    replacements.sort(key=lambda x: x[0], reverse=True)
+    result = list(text)
+    for pos, emoji in replacements:
+        result.insert(pos, emoji)
     return "".join(result)
 
 
