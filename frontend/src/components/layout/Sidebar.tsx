@@ -71,10 +71,10 @@ export function Sidebar() {
       <aside
         id={sidebarId}
         className={`
-          w-60 h-screen sticky top-0 border-r border-surface-200 dark:border-surface-800
-          bg-white dark:bg-surface-900 flex flex-col shrink-0 z-40
+          fixed inset-y-0 left-0 w-60 border-r border-surface-200 dark:border-surface-800
+          bg-white dark:bg-surface-900 flex flex-col z-40
           transition-transform duration-300 ease-in-out
-          lg:translate-x-0
+          lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:translate-x-0
           ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'}
         `}
       >
