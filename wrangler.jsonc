@@ -4,6 +4,6 @@
   "pages_build_output_dir": "./frontend/dist",
   "compatibility_date": "2026-08-23",
   "vars": {
-    "VERCEL_API_ORIGIN": "https://make-it-pretty.vercel.app"
+    "PYTHON_API_ORIGIN": ""
   }
 }
