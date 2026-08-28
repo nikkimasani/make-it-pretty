@@ -139,7 +139,7 @@ export function CodeBeautifierPage() {
     <div className="px-4 sm:px-6 lg:px-8 py-8 max-w-5xl mx-auto">
       <WorkspaceHeader
         title="Code Beautifier"
-        description={`Format source code in ${LANGUAGES_COUNT}+ languages using Ruff, Black, Prettier, clang-format, and more.`}
+        description={`Clean up source code in ${LANGUAGES_COUNT}+ languages, with rich local formatting for popular web and data formats.`}
         icon="✨"
         formats={['py', 'js', 'ts', 'html', 'css', 'java', 'c', 'cpp', 'cs', 'go', 'rs', 'sql']}
       />
